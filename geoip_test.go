@@ -54,12 +54,12 @@ func TestGeoIpCountry(t *testing.T) {
 }
 
 func BenchmarkGeoIpCountryForIPv4(b *testing.B) {
-	ip := net.ParseIP("8.8.8.8")
+	ip := net.IP{8, 8, 8, 8}
 
 	b.ReportAllocs()
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		Country(net.IP(ip))
+		Country(ip)
 	}
 }
 
