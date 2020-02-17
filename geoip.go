@@ -1,9 +1,6 @@
 // Package geoip provides fastest GeoIP Country library for Go.
 //
-// eg.
-//
-//      country := geoip.Country(net.ParseIP("1.1.1.1"))
-//      fmt.Printf("%s\n", country)
+//      fmt.Printf("%s\n", geoip.Country(net.ParseIP("1.1.1.1")))
 //
 //      // Output: US
 package geoip
@@ -13,7 +10,7 @@ import (
 	"net"
 )
 
-// Country find iso3166 country code of IP.
+// Country find ISO 3166-1 alpha-2 country code of IP.
 func Country(ip net.IP) (country []byte) {
 	if ip == nil {
 		return

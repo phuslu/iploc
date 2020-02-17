@@ -8,12 +8,13 @@
 package main
 
 import (
+	"fmt"
 	"net"
 	"github.com/phuslu/geoip"
 )
 
 func main() {
-	println(string(geoip.Country(net.ParseIP("2001:4860:4860::8888"))))
+	fmt.Printf("%s", geoip.Country(net.ParseIP("2001:4860:4860::8888")))
 }
 
 // Output: US
