@@ -1,0 +1,30 @@
+name: update
+
+on:
+  schedule:
+    - cron: '0 16 * * *'
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-go@v2
+      - name: update
+        run: |
+          git checkout master
+          python3 update-db.py
+          go test -v
+      - name: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "update db" -a
+          git tag $(date -u +v1.0.%Y%m%d)
+      - name: push
+        run: |
+          git remote set-url origin https://${GEOIP_TOKEN}@github.com/${GITHUB_REPOSITORY}
+          git push origin master
+          git push origin --tags
+        env:
+          GEOIP_TOKEN: ${{ secrets.GEOIP_TOKEN }}
