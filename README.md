@@ -1,9 +1,10 @@
 # geoip - fastest geoip country library
 
-[![godoc](http://img.shields.io/badge/godoc-reference-blue.svg?style=flat)](https://godoc.org/github.com/phuslu/geoip) [![license](http://img.shields.io/badge/license-MIT-red.svg?style=flat)](https://raw.githubusercontent.com/phuslu/geoip/master/LICENSE) [![goreport](https://goreportcard.com/badge/github.com/phuslu/geoip)](https://goreportcard.com/report/github.com/phuslu/geoip) [![coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)](https://gocover.io/github.com/phuslu/geoip)
+[![godoc][godoc-img]][godoc] [![release][release-img]][release] [![goreport][goreport-img]][goreport] [![coverage][coverage-img]][coverage]
 
 ### Getting Started
 
+try on https://play.golang.org/p/0quZRSXdTjq
 ```go
 package main
 
@@ -28,3 +29,15 @@ BenchmarkGeoIpCountryForIPv6-8   	38.2 ns/op	       0 B/op	       0 allocs/op
 
 ### Acknowledgment
 This site or product includes IP2Location LITE data available from http://www.ip2location.com.
+
+### How often are the database(geo_db.go) updated?
+Following IP2Location Lite Database, usually **monthly**.
+
+[godoc-img]: http://img.shields.io/badge/godoc-reference-blue.svg
+[godoc]: https://godoc.org/github.com/phuslu/geoip
+[release-img]: https://img.shields.io/github/v/tag/phuslu/geoip?label=release
+[release]: https://github.com/phuslu/geoip/releases
+[goreport-img]: https://goreportcard.com/badge/github.com/phuslu/geoip
+[goreport]: https://goreportcard.com/report/github.com/phuslu/geoip
+[coverage-img]: https://img.shields.io/badge/coverage-100%25-brightgreen
+[coverage]: https://gocover.io/github.com/phuslu/geoip
