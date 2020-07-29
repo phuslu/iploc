@@ -16,10 +16,11 @@ jobs:
           go test -v
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "update db" -a && \
-          git tag $(date -u +v1.0.%Y%m%d) && \
-          git push origin master && \
-          git push origin --tags || \
+          if git commit -m "update db" -a; then
+            git tag $(date -u +v1.0.%Y%m%d)
+            git push origin master
+            git push origin --tags
+          fi
           true
         env:
           GEOIP_TOKEN: ${{ secrets.GEOIP_TOKEN }}
