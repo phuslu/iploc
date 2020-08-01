@@ -21,6 +21,13 @@ func main() {
 // Output: US
 ```
 
+### Command Tool
+```bash
+$ go get github.com/phuslu/geoip/cmd/geoip
+$ geoip 1.1.1.1
+US
+```
+
 ### Benchmarks
 ```
 BenchmarkGeoIpCountryForIPv4-8   	20.8 ns/op	       0 B/op	       0 allocs/op
