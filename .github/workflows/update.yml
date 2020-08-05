@@ -8,7 +8,7 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-      - name: update
+      - name: Update
         run: |
           git clone https://${GEOIP_TOKEN}@github.com/${GITHUB_REPOSITORY}
           cd geoip
@@ -17,7 +17,10 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           if git commit -m "update db" -a; then
-            git tag $(date -u +v1.0.%Y%m%d)
+            tag=$(date -u +v1.0.%Y%m%d)
+            sed -i -E "s#const Version = .+#const Version = \"$tag\"#g" geoip.go
+            git commit --amend -a --no-edit
+            git tag ${tag}
             git push origin master
             git push origin --tags
           fi

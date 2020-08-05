@@ -20,6 +20,8 @@ import (
 	"net"
 )
 
+const Version = "v1.0.20200730"
+
 // Country return ISO 3166-1 alpha-2 country code of IP.
 func Country(ip net.IP) (country []byte) {
 	if ip == nil {
