@@ -16,6 +16,13 @@ func main() {
 	}
 
 	s := os.Args[1]
+
+	switch s {
+	case "-v", "-version", "--version":
+		fmt.Printf("%s\n", geoip.Version)
+		return
+	}
+
 	if ip := net.ParseIP(s); ip != nil {
 		fmt.Printf("%s\n", geoip.Country(ip))
 		return
