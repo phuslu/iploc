@@ -55,7 +55,7 @@ def gen4() -> str:
     return '''
 var geo = []byte("%s")
 var ips = []uint32{%s}
-''' % (geo, ', '.join(ips))
+''' % (geo, ','.join(ips))
 
 
 def main():
