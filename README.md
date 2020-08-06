@@ -15,7 +15,7 @@ import (
 )
 
 func main() {
-	fmt.Printf("%s", geoip.Country(net.ParseIP("2001:4860:4860::8888")))
+	fmt.Printf("%s", geoip.Country(net.IP{1,1,1,1}))
 }
 
 // Output: US
@@ -24,7 +24,7 @@ func main() {
 ### Command Tool
 ```bash
 $ go get github.com/phuslu/geoip/cmd/geoip
-$ geoip 1.1.1.1
+$ geoip 2001:4860:4860::8888
 US
 ```
 
