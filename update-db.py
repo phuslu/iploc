@@ -26,7 +26,7 @@ def get(url: str) -> (list, list):
 
 
 def gen6() -> str:
-    """generate ipv4 to geoip_db.go"""
+    """generate ipv4 to iploc_db.go"""
     geo, ips = get('http://download.ip2location.com/lite/IP2LOCATION-LITE-DB1.IPV6.CSV.ZIP')
     pack = lambda ip: struct.pack('<Q', ip >> 64) + struct.pack('<Q', ip & 0xFFFFFFFFFFFFFFFF)
     ips = base64.b64encode(zlib.compress(b''.join(pack(int(x)) for x in ips))).decode()
@@ -50,7 +50,7 @@ var ips6 = func() []byte {
 
 
 def gen4() -> str:
-    """generate ipv4 to geoip_db.go"""
+    """generate ipv4 to iploc_db.go"""
     geo, ips = get('http://download.ip2location.com/lite/IP2LOCATION-LITE-DB1.CSV.ZIP')
     return '''
 var geo = []byte("%s")
@@ -59,9 +59,9 @@ var ips = []uint32{%s}
 
 
 def main():
-    """convert ip2location country csv to geoip_db.go"""
+    """convert ip2location country csv to iploc_db.go"""
     text = gen6() + gen4()
-    with open('geoip_db.go', 'wb') as file:
+    with open('iploc_db.go', 'wb') as file:
         file.write(text.encode())
 
 

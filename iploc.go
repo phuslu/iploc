@@ -1,15 +1,15 @@
-// Package geoip provides fastest GeoIP Country library for Go.
+// Package iploc provides fastest Geolocation Country library for Go.
 //
 //      package main
 //
 //      import (
 //      	"fmt"
 //      	"net"
-//      	"github.com/phuslu/geoip"
+//      	"github.com/phuslu/iploc"
 //      )
 //
 //      func main() {
-//      	fmt.Printf("%s", geoip.Country(net.ParseIP("2001:4860:4860::8888")))
+//      	fmt.Printf("%s", iploc.Country(net.ParseIP("2001:4860:4860::8888")))
 //      }
 //
 //      // Output: US
