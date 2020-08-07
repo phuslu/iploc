@@ -1,10 +1,10 @@
-# iploc - fastest geo country library
+# iploc - fastest ip country library
 
 [![godoc][godoc-img]][godoc] [![release][release-img]][release] [![goreport][goreport-img]][goreport] [![coverage][coverage-img]][coverage]
 
 ### Getting Started
 
-try on https://play.golang.org/p/0quZRSXdTjq
+try on https://play.golang.org/p/T_7jfSr0cE1
 ```go
 package main
 
