@@ -6,7 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/phuslu/geoip"
+	"github.com/phuslu/iploc"
 )
 
 func main() {
@@ -19,12 +19,12 @@ func main() {
 
 	switch s {
 	case "-v", "-version", "--version":
-		fmt.Printf("%s\n", geoip.Version)
+		fmt.Printf("%s\n", iploc.Version)
 		return
 	}
 
 	if ip := net.ParseIP(s); ip != nil {
-		fmt.Printf("%s\n", geoip.Country(ip))
+		fmt.Printf("%s\n", iploc.Country(ip))
 		return
 	}
 
@@ -34,5 +34,5 @@ func main() {
 		os.Exit(1)
 	}
 
-	fmt.Printf("%s\n", geoip.Country(ips[0]))
+	fmt.Printf("%s\n", iploc.Country(ips[0]))
 }
