@@ -1,3 +1,3 @@
-module github.com/phuslu/geoip
+module github.com/phuslu/iploc
 
 go 1.13
