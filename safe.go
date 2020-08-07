@@ -7,7 +7,7 @@
 // +build !mips64le
 // +build !mips64p32le
 
-package geoip
+package iploc
 
 import (
 	"encoding/binary"

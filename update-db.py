@@ -30,7 +30,7 @@ def gen6() -> str:
     geo, ips = get('http://download.ip2location.com/lite/IP2LOCATION-LITE-DB1.IPV6.CSV.ZIP')
     pack = lambda ip: struct.pack('<Q', ip >> 64) + struct.pack('<Q', ip & 0xFFFFFFFFFFFFFFFF)
     ips = base64.b64encode(zlib.compress(b''.join(pack(int(x)) for x in ips))).decode()
-    return '''package geoip
+    return '''package iploc
 
 import (
     "compress/zlib"

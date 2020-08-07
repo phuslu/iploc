@@ -13,7 +13,7 @@
 //      }
 //
 //      // Output: US
-package geoip
+package iploc
 
 import (
 	"encoding/binary"

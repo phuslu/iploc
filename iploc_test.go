@@ -1,4 +1,4 @@
-package geoip
+package iploc
 
 import (
 	"net"
