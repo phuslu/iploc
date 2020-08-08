@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestGeoIpCountry(t *testing.T) {
+func TestCountry(t *testing.T) {
 	cases := []struct {
 		IP      string
 		Country string
@@ -16,7 +16,6 @@ func TestGeoIpCountry(t *testing.T) {
 		{"1.1.1.1", "US"},
 		{"121.229.143.64", "CN"},
 		{"122.96.43.186", "CN"},
-		// {"123.249.20.198", "CN"},
 		{"153.3.123.160", "CN"},
 		{"153.3.131.201", "CN"},
 		{"180.109.81.198", "CN"},
@@ -53,7 +52,7 @@ func TestGeoIpCountry(t *testing.T) {
 	}
 }
 
-func BenchmarkGeoIpCountryForIPv4(b *testing.B) {
+func BenchmarkCountryForIPv4(b *testing.B) {
 	ip := net.IP{8, 8, 8, 8}
 
 	b.ReportAllocs()
@@ -63,7 +62,7 @@ func BenchmarkGeoIpCountryForIPv4(b *testing.B) {
 	}
 }
 
-func BenchmarkGeoIpCountryForIPv6(b *testing.B) {
+func BenchmarkCountryForIPv6(b *testing.B) {
 	ip := net.ParseIP("2001:4860:4860::8888")
 
 	b.ReportAllocs()
