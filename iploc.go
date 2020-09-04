@@ -60,3 +60,45 @@ func Country(ip net.IP) (country []byte) {
 
 	return
 }
+
+// IsReservedIPv4 detects a net.IP is a reserved address, return fasle if IPv6
+func IsReservedIPv4(ip net.IP) bool {
+	if ip4 := ip.To4(); ip4 != nil {
+		_ = ip4[3]
+		switch ip4[0] {
+		case 10:
+			return true
+		case 100:
+			return ip4[1] >= 64 && ip4[1] <= 127
+		case 127:
+			return true
+		case 169:
+			return ip4[1] == 254
+		case 172:
+			return ip4[1] >= 16 && ip4[1] <= 31
+		case 192:
+			switch ip4[1] {
+			case 0:
+				switch ip4[2] {
+				case 0, 2:
+					return true
+				}
+			case 18, 19:
+				return true
+			case 51:
+				return ip4[2] == 100
+			case 88:
+				return ip4[2] == 99
+			case 168:
+				return true
+			}
+		case 203:
+			return ip4[1] == 0 && ip4[2] == 113
+		case 224:
+			return true
+		case 240:
+			return true
+		}
+	}
+	return false
+}
