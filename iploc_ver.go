@@ -1,3 +1,3 @@
 package iploc
 
-const Version = "v1.0.20210531"
+const Version = "v1.0.20210629"
