@@ -10,9 +10,20 @@
 package iploc
 
 import (
+	_ "embed"
 	"encoding/binary"
 )
 
+//go:embed ipv4
+var ip4data []byte
+
+//go:embed ipv6.gz
+var ip6data []byte
+
+func ip4uint(i int) uint32 {
+	return binary.LittleEndian.Uint32(ip4data[i*6:])
+}
+
 func ip6uint(i int) uint64 {
-	return binary.LittleEndian.Uint64(ips6[i:])
+	return binary.LittleEndian.Uint64(ip6data[i*18:])
 }
