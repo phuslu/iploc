@@ -5,51 +5,6 @@ import (
 	"testing"
 )
 
-func TestIsReservedIPv4(t *testing.T) {
-	cases := []struct {
-		IP       string
-		Reserved bool
-	}{
-		{"0.0.0.0", false},
-		{"0.1.1.1", false},
-		{"1.1.1.1", false},
-		{"121.229.143.64", false},
-		{"122.96.43.186", false},
-		{"153.3.123.160", false},
-		{"153.3.131.201", false},
-		{"180.109.81.198", false},
-		{"180.111.103.88", false},
-		{"183.206.11.225", false},
-		{"192.210.171.249", false},
-		{"223.112.9.2", false},
-		{"23.16.28.232", false},
-		{"58.240.115.210", false},
-		{"61.155.4.66", false},
-		{"255.255.255.255", false},
-		{"2001:4860:4860::8888", false},
-		{"2001::6ca0:a535", false},
-		{"2001:dc7:1000::1", false},
-		{"2400:3200::1", false},
-		{"2400:da00::6666", false},
-		{"2404:6800:4008:801::2004", false},
-		{"2404:6800:4012:1::200e", false},
-		{"240C::6666", false},
-		{"240e:4c:4008::1", false},
-		{"240e:e8:f089:4877:70d2:775c:91d1:ab12", false},
-		{"2620:0:2d0:200::7", false},
-		{"2a04:4e42:600::223", false},
-		{"::", false},
-		{"::1", false},
-	}
-
-	for _, c := range cases {
-		reserved := IsReservedIPv4(net.ParseIP(c.IP))
-		if reserved != c.Reserved {
-			t.Errorf("IsReservedIPv4(%#v) return \"%v\", expect %#v", c.IP, reserved, c.Reserved)
-		}
-	}
-}
-
 func TestCountry(t *testing.T) {
 	cases := []struct {
 		IP      string
