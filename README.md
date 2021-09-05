@@ -30,14 +30,14 @@ US
 
 ### Benchmarks
 ```
-BenchmarkCountryForIPv4-2   	34826096	        32.43 ns/op	       0 B/op	       0 allocs/op
-BenchmarkCountryForIPv6-2   	29270091	        40.93 ns/op	       0 B/op	       0 allocs/op
+BenchmarkCountryForIPv4-2   	52205133	        22.84 ns/op	       0 B/op	       0 allocs/op
+BenchmarkCountryForIPv6-2   	32255604	        31.92 ns/op	       0 B/op	       0 allocs/op
 ```
 
 ### Acknowledgment
 This site or product includes IP2Location LITE data available from http://www.ip2location.com.
 
-### How often are the database(iploc_db.go) updated?
+### How often are the inlined ip data updated?
 Following IP2Location Lite Database, usually **monthly**.
 
 [godoc-img]: http://img.shields.io/badge/godoc-reference-blue.svg
