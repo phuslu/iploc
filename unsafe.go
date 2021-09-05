@@ -3,7 +3,7 @@
 package iploc
 
 import (
-	_ "embed"
+	_ "embed" // for ip data
 	"unsafe"
 )
 
