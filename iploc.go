@@ -23,6 +23,7 @@ import (
 	"net"
 )
 
+// Version is iplocation database version.
 const Version = "v1.0.20210830"
 
 func init() {

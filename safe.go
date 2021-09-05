@@ -10,7 +10,7 @@
 package iploc
 
 import (
-	_ "embed"
+	_ "embed" // for ip data
 	"encoding/binary"
 )
 

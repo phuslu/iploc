@@ -30,8 +30,8 @@ US
 
 ### Benchmarks
 ```
-BenchmarkCountryForIPv4-8   	20.8 ns/op	       0 B/op	       0 allocs/op
-BenchmarkCountryForIPv6-8   	38.2 ns/op	       0 B/op	       0 allocs/op
+BenchmarkCountryForIPv4-2   	34826096	        32.43 ns/op	       0 B/op	       0 allocs/op
+BenchmarkCountryForIPv6-2   	29270091	        40.93 ns/op	       0 B/op	       0 allocs/op
 ```
 
 ### Acknowledgment
@@ -46,5 +46,5 @@ Following IP2Location Lite Database, usually **monthly**.
 [release]: https://github.com/phuslu/iploc/releases
 [goreport-img]: https://goreportcard.com/badge/github.com/phuslu/iploc
 [goreport]: https://goreportcard.com/report/github.com/phuslu/iploc
-[coverage-img]: https://img.shields.io/badge/coverage-100%25-brightgreen
+[coverage-img]: http://gocover.io/_badge/github.com/phuslu/iploc
 [coverage]: https://gocover.io/github.com/phuslu/iploc
