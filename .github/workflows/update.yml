@@ -18,7 +18,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           if git commit -m "update db" -a; then
             tag=$(date -u +v1.0.%Y%m%d)
-            sed -i -E "s#const Version = .+#const Version = \"$tag\"#g" iploc_ver.go
+            sed -i -E "s#const Version = .+#const Version = \"$tag\"#g" iploc.go
             git commit --amend -a --no-edit
             git tag ${tag}
             git push origin master
