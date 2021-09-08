@@ -42,9 +42,9 @@ def gen_ip6_data() -> bytes:
     pack = lambda e, ip: struct.pack(e+'Q', ip >> 64) + struct.pack(e+'Q', ip & 0xFFFFFFFFFFFFFFFF)
     with open('ipv6.txt', 'wb') as file:
         file.write(geo)
-    with gzip.GzipFile('ipv6le.gz', 'wb') as file:
+    with gzip.GzipFile('ipv6le.gz', 'wb', mtime=1) as file:
         file.write(b''.join(pack('<', int(ip)) for ip in iplist))
-    with gzip.GzipFile('ipv6be.gz', 'wb') as file:
+    with gzip.GzipFile('ipv6be.gz', 'wb', mtime=1) as file:
         file.write(b''.join(pack('>', int(ip)) for ip in iplist))
 
 
