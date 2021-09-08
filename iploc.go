@@ -27,7 +27,7 @@ import (
 )
 
 // Version is iplocation database version.
-const Version = "v1.0.20210907"
+const Version = "v1.0.20210908"
 
 var ip4uint []uint32
 var ip6uint []uint64
