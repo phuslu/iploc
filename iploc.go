@@ -51,8 +51,8 @@ func init() {
 	ip6bin, _ = io.ReadAll(r)
 	ip6uint = *(*[]uint64)(unsafe.Pointer(&reflect.SliceHeader{
 		Data: uintptr(unsafe.Pointer(&ip6bin[0])),
-		Len:  len(ip6bin) / 16,
-		Cap:  len(ip6bin) / 16,
+		Len:  len(ip6bin) / 8,
+		Cap:  len(ip6bin) / 8,
 	}))
 }
 
