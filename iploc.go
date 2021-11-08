@@ -22,6 +22,7 @@ import (
 	"encoding/binary"
 	"io"
 	"net"
+	"os"
 	"reflect"
 	"unsafe"
 )
@@ -47,13 +48,17 @@ func init() {
 	}))
 
 	// ipv6
-	r, _ := gzip.NewReader(bytes.NewReader(ip6bin))
-	ip6bin, _ = io.ReadAll(r)
-	ip6uint = *(*[]uint64)(unsafe.Pointer(&reflect.SliceHeader{
-		Data: uintptr(unsafe.Pointer(&ip6bin[0])),
-		Len:  len(ip6bin) / 8,
-		Cap:  len(ip6bin) / 8,
-	}))
+	if os.Getenv("IPLOC_IPV4ONLY") == "" {
+		r, _ := gzip.NewReader(bytes.NewReader(ip6bin))
+		ip6bin, _ = io.ReadAll(r)
+		ip6uint = *(*[]uint64)(unsafe.Pointer(&reflect.SliceHeader{
+			Data: uintptr(unsafe.Pointer(&ip6bin[0])),
+			Len:  len(ip6bin) / 8,
+			Cap:  len(ip6bin) / 8,
+		}))
+	} else {
+		ip6uint = []uint64{0, 0}
+	}
 }
 
 // Country return ISO 3166-1 alpha-2 country code of IP.
