@@ -26,7 +26,7 @@ def get(url: str) -> (list, list):
 
 def gen_ip4_data() -> bytes:
     """generate ipv4 to binary data"""
-    iplist, geo = get('http://download.ip2location.com/lite/IP2LOCATION-LITE-DB1.CSV.ZIP')
+    iplist, geo = get('https://download.ip2location.com/lite/IP2LOCATION-LITE-DB1.CSV.ZIP')
     pack = lambda e, ip: struct.pack(e+'I', ip)
     with open('ipv4.txt', 'wb') as file:
         file.write(geo)
@@ -38,7 +38,7 @@ def gen_ip4_data() -> bytes:
 
 def gen_ip6_data() -> bytes:
     """generate ipv6 to binary data"""
-    iplist, geo = get('http://download.ip2location.com/lite/IP2LOCATION-LITE-DB1.IPV6.CSV.ZIP')
+    iplist, geo = get('https://download.ip2location.com/lite/IP2LOCATION-LITE-DB1.IPV6.CSV.ZIP')
     pack = lambda e, ip: struct.pack(e+'Q', ip >> 64) + struct.pack(e+'Q', ip & 0xFFFFFFFFFFFFFFFF)
     with open('ipv6.txt', 'wb') as file:
         file.write(geo)
