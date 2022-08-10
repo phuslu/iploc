@@ -21,13 +21,6 @@ func main() {
 // Output: US
 ```
 
-### Command Tool
-```bash
-$ go get github.com/phuslu/iploc/cmd/iploc
-$ iploc 2001:4860:4860::8888
-US
-```
-
 ### Benchmarks
 ```
 BenchmarkCountryForIPv4-2   	52205133	        22.84 ns/op	       0 B/op	       0 allocs/op
