@@ -1,4 +1,4 @@
-// +build ppc64be mipsbe mips64be mips64p32be
+// +build ppc64 mips mips64 mips64p32
 
 package iploc
 
