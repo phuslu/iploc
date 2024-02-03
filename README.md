@@ -1,6 +1,6 @@
 # iploc - fastest ip country library
 
-[![godoc][godoc-img]][godoc] [![release][release-img]][release] [![goreport][goreport-img]][goreport] [![coverage][coverage-img]][coverage]
+[![godoc][godoc-img]][godoc] [![release][release-img]][release] [![goreport][goreport-img]][goreport]
 
 ### Getting Started
 
