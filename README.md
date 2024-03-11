@@ -10,12 +10,12 @@ package main
 
 import (
 	"fmt"
-	"net"
+	"net/netip"
 	"github.com/phuslu/iploc"
 )
 
 func main() {
-	fmt.Printf("%s", iploc.Country(net.IP{1,1,1,1}))
+	fmt.Printf("%s", iploc.IPCountry(netip.MustParseAddr("1.1.1.1"))
 }
 
 // Output: US
@@ -23,8 +23,16 @@ func main() {
 
 ### Benchmarks
 ```
-BenchmarkCountryForIPv4-2   	52205133	        22.84 ns/op	       0 B/op	       0 allocs/op
-BenchmarkCountryForIPv6-2   	32255604	        31.92 ns/op	       0 B/op	       0 allocs/op
+goos: windows
+goarch: amd64
+pkg: github.com/phuslu/iploc
+cpu: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz
+BenchmarkIPCountryForIPv4
+BenchmarkIPCountryForIPv4-8     74145014                14.96 ns/op            0 B/op          0 allocs/op
+BenchmarkIPCountryForIPv6
+BenchmarkIPCountryForIPv6-8     59173639                22.73 ns/op            0 B/op          0 allocs/op
+PASS
+ok      github.com/phuslu/iploc 2.637s
 ```
 
 ### Acknowledgment
