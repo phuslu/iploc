@@ -1,3 +1,4 @@
+//go:build ppc64 || mips || mips64 || mips64p32
 // +build ppc64 mips mips64 mips64p32
 
 package iploc
