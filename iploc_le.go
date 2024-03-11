@@ -1,3 +1,4 @@
+//go:build 386 || amd64 || arm || amd64p32 || arm64 || ppc64le || mipsle || mips64le || mips64p32le || riscv64
 // +build 386 amd64 arm amd64p32 arm64 ppc64le mipsle mips64le mips64p32le riscv64
 
 package iploc
