@@ -22,6 +22,7 @@ import (
 	"encoding/binary"
 	"io"
 	"net"
+	"net/netip"
 	"os"
 	"reflect"
 	"unsafe"
@@ -85,6 +86,45 @@ func Country(ip net.IP) (country []byte) {
 		// ipv6
 		high := binary.BigEndian.Uint64(ip)
 		low := binary.BigEndian.Uint64(ip[8:])
+		i, j := 0, len(ip6uint)
+		_ = ip6uint[j-1]
+		for i < j {
+			h := (i + j) >> 1 & ^1
+			n := ip6uint[h]
+			if n > high || (n == high && ip6uint[h+1] > low) {
+				j = h
+			} else {
+				i = h + 2
+			}
+		}
+		country = ip6txt[i-2 : i]
+	}
+
+	return
+}
+
+// IPCountry return ISO 3166-1 alpha-2 country code of IP.
+func IPCountry(ip netip.Addr) (country []byte) {
+	if ip.Is4() {
+		// ipv4
+		b := ip.As4()
+		n := uint32(b[0])<<24 | uint32(b[1])<<16 | uint32(b[2])<<8 | uint32(b[3])
+		i, j := 0, len(ip4uint)
+		_ = ip4uint[j-1]
+		for i < j {
+			h := (i + j) >> 1
+			if ip4uint[h] > n {
+				j = h
+			} else {
+				i = h + 1
+			}
+		}
+		country = ip4txt[i*2-2 : i*2]
+	} else {
+		// ipv6
+		b := ip.As16()
+		high := uint64(b[0])<<56 | uint64(b[1])<<48 | uint64(b[2])<<40 | uint64(b[3])<<32 | uint64(b[4])<<24 | uint64(b[5])<<16 | uint64(b[6])<<8 | uint64(b[7])
+		low := uint64(b[8])<<56 | uint64(b[9])<<48 | uint64(b[10])<<40 | uint64(b[11])<<32 | uint64(b[12])<<24 | uint64(b[13])<<16 | uint64(b[14])<<8 | uint64(b[15])
 		i, j := 0, len(ip6uint)
 		_ = ip6uint[j-1]
 		for i < j {
