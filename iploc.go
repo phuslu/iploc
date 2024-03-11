@@ -19,7 +19,6 @@ import (
 	"bytes"
 	"compress/gzip"
 	_ "embed" // for ip data
-	"encoding/binary"
 	"io"
 	"net"
 	"net/netip"
@@ -94,42 +93,10 @@ func Country(ip net.IP) (country []byte) {
 		return
 	}
 
-	if ip4 := ip.To4(); ip4 != nil {
-		n := binary.BigEndian.Uint32(ip4)
-		i, j := 0, len(ip4bin)/4
-		for i < j {
-			h := (i + j) >> 1
-			if *(*uint32)(unsafe.Add(unsafe.Pointer(&ip4bin[0]), uintptr(h*4))) > n {
-				j = h
-			} else {
-				i = h + 1
-			}
-		}
-		return ip4txt[i*2-2 : i*2]
-	}
-
-	ipv6once.Do(func() {
-		ipv4only = os.Getenv("IPLOC_IPV4ONLY") != ""
-		r, _ := gzip.NewReader(bytes.NewReader(ip6bin))
-		ip6bin, _ = io.ReadAll(r)
-	})
-
-	if ipv4only {
+	addr, ok := netip.AddrFromSlice(ip)
+	if !ok {
 		return
 	}
 
-	high := binary.BigEndian.Uint64(ip)
-	low := binary.BigEndian.Uint64(ip[8:])
-	i, j := 0, len(ip6bin)/8
-	for i < j {
-		h := (i + j) >> 1 & ^1
-		n := *(*uint64)(unsafe.Add(unsafe.Pointer(&ip6bin[0]), uintptr(h*8)))
-		if n > high || (n == high && *(*uint64)(unsafe.Add(unsafe.Pointer(&ip6bin[0]), uintptr((h+1)*8))) > low) {
-			j = h
-		} else {
-			i = h + 2
-		}
-	}
-
-	return ip6txt[i-2 : i]
+	return IPCountry(addr)
 }
