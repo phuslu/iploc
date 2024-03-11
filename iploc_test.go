@@ -98,22 +98,22 @@ func TestIPCountry(t *testing.T) {
 	}
 }
 
-func BenchmarkCountryForIPv4(b *testing.B) {
-	ip := net.IP{8, 8, 8, 8}
+func BenchmarkIPCountryForIPv4(b *testing.B) {
+	ip := netip.MustParseAddr("9.8.8.8")
 
 	b.ReportAllocs()
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		Country(ip)
+		IPCountry(ip)
 	}
 }
 
-func BenchmarkCountryForIPv6(b *testing.B) {
-	ip := net.ParseIP("2001:4860:4860::8888")
+func BenchmarkIPCountryForIPv6(b *testing.B) {
+	ip := netip.MustParseAddr("2001:4860:4860::8888")
 
 	b.ReportAllocs()
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		Country(ip)
+		IPCountry(ip)
 	}
 }
