@@ -26,13 +26,13 @@ func main() {
 goos: windows
 goarch: amd64
 pkg: github.com/phuslu/iploc
-cpu: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz
+cpu: 11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 BenchmarkIPCountryForIPv4
-BenchmarkIPCountryForIPv4-8     74145014                14.96 ns/op            0 B/op          0 allocs/op
+BenchmarkIPCountryForIPv4-8     80750439                13.57 ns/op            0 B/op          0 allocs/op
 BenchmarkIPCountryForIPv6
-BenchmarkIPCountryForIPv6-8     59173639                22.73 ns/op            0 B/op          0 allocs/op
+BenchmarkIPCountryForIPv6-8     57166812                20.44 ns/op            0 B/op          0 allocs/op
 PASS
-ok      github.com/phuslu/iploc 2.637s
+ok      github.com/phuslu/iploc 2.360s
 ```
 
 ### Acknowledgment

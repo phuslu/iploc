@@ -1,15 +1,15 @@
-// Package iploc provides fastest Geolocation Country library for Go.
+// Package iploc provides fastest IP to Country library for Go.
 //
 //	package main
 //
 //	import (
 //		"fmt"
-//		"net"
+//		"net/netip"
 //		"github.com/phuslu/iploc"
 //	)
 //
 //	func main() {
-//		fmt.Printf("%s", iploc.Country(net.ParseIP("2001:4860:4860::8888")))
+//		fmt.Printf("%s", iploc.IPCountry(netip.MustParseAddr("1.1.1.1"))
 //	}
 //
 //	// Output: US
@@ -23,6 +23,7 @@ import (
 	"net"
 	"net/netip"
 	"os"
+	"reflect"
 	"sync"
 	"unsafe"
 )
@@ -53,23 +54,25 @@ func IPCountry(ip netip.Addr) (country []byte) {
 				i = h + 1
 			}
 		}
-		return ip4txt[i*2-2 : i*2]
+		// country = ip4txt[i*2-2 : i*2]
+		sh := (*reflect.SliceHeader)(unsafe.Pointer(&country))
+		sh.Data = uintptr(unsafe.Add(unsafe.Pointer(&ip4txt[0]), uintptr(i*2-2)))
+		sh.Len = 2
+		sh.Cap = 2
+		return
 	}
 
 	ipv6once.Do(func() {
 		ipv4only = os.Getenv("IPLOC_IPV4ONLY") != ""
-		r, _ := gzip.NewReader(bytes.NewReader(ip6bin))
-		ip6bin, _ = io.ReadAll(r)
+		if !ipv4only {
+			r, _ := gzip.NewReader(bytes.NewReader(ip6bin))
+			ip6bin, _ = io.ReadAll(r)
+		}
 	})
 
 	if ipv4only {
 		return
 	}
-
-	ipv6once.Do(func() {
-		r, _ := gzip.NewReader(bytes.NewReader(ip6bin))
-		ip6bin, _ = io.ReadAll(r)
-	})
 
 	b := ip.As16()
 	high := uint64(b[0])<<56 | uint64(b[1])<<48 | uint64(b[2])<<40 | uint64(b[3])<<32 | uint64(b[4])<<24 | uint64(b[5])<<16 | uint64(b[6])<<8 | uint64(b[7])
@@ -84,7 +87,12 @@ func IPCountry(ip netip.Addr) (country []byte) {
 			i = h + 2
 		}
 	}
-	return ip6txt[i-2 : i]
+	// country = ip6txt[i-2 : i]
+	sh := (*reflect.SliceHeader)(unsafe.Pointer(&country))
+	sh.Data = uintptr(unsafe.Add(unsafe.Pointer(&ip6txt[0]), uintptr(i-2)))
+	sh.Len = 2
+	sh.Cap = 2
+	return
 }
 
 // Country return ISO 3166-1 alpha-2 country code of IP.
