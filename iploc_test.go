@@ -46,7 +46,7 @@ func TestCountry(t *testing.T) {
 
 	for _, c := range cases {
 		country := Country(net.ParseIP(c.IP))
-		if string(country) != c.Country {
+		if country != c.Country {
 			t.Errorf("Country(%#v) return \"%s\", expect %#v", c.IP, country, c.Country)
 		}
 	}
@@ -91,8 +91,8 @@ func TestIPCountry(t *testing.T) {
 
 	for _, c := range cases {
 		country := IPCountry(netip.MustParseAddr(c.IP))
-		// println(c.IP, string(country))
-		if string(country) != c.Country {
+		// println(c.IP, country)
+		if country != c.Country {
 			t.Errorf("Country(%#v) return \"%s\", expect %#v", c.IP, country, c.Country)
 		}
 	}
