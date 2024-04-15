@@ -41,7 +41,7 @@ var ipv6once sync.Once
 var ipv4only bool
 
 // IPCountry return ISO 3166-1 alpha-2 country code of IP.
-func IPCountry(ip netip.Addr) (country []byte) {
+func IPCountry(ip netip.Addr) (country string) {
 	if ip.Is4() {
 		b := ip.As4()
 		n := uint32(b[0])<<24 | uint32(b[1])<<16 | uint32(b[2])<<8 | uint32(b[3])
@@ -55,10 +55,9 @@ func IPCountry(ip netip.Addr) (country []byte) {
 			}
 		}
 		// country = ip4txt[i*2-2 : i*2]
-		sh := (*reflect.SliceHeader)(unsafe.Pointer(&country))
+		sh := (*reflect.StringHeader)(unsafe.Pointer(&country))
 		sh.Data = uintptr(unsafe.Add(unsafe.Pointer(&ip4txt[0]), uintptr(i*2-2)))
 		sh.Len = 2
-		sh.Cap = 2
 		return
 	}
 
@@ -88,15 +87,14 @@ func IPCountry(ip netip.Addr) (country []byte) {
 		}
 	}
 	// country = ip6txt[i-2 : i]
-	sh := (*reflect.SliceHeader)(unsafe.Pointer(&country))
+	sh := (*reflect.StringHeader)(unsafe.Pointer(&country))
 	sh.Data = uintptr(unsafe.Add(unsafe.Pointer(&ip6txt[0]), uintptr(i-2)))
 	sh.Len = 2
-	sh.Cap = 2
 	return
 }
 
 // Country return ISO 3166-1 alpha-2 country code of IP.
-func Country(ip net.IP) (country []byte) {
+func Country(ip net.IP) (country string) {
 	if ip == nil {
 		return
 	}
