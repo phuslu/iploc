@@ -95,14 +95,8 @@ func IPCountry(ip netip.Addr) (country string) {
 
 // Country return ISO 3166-1 alpha-2 country code of IP.
 func Country(ip net.IP) (country string) {
-	if ip == nil {
-		return
+	if addr, ok := netip.AddrFromSlice(ip); ok {
+		return IPCountry(addr)
 	}
-
-	addr, ok := netip.AddrFromSlice(ip)
-	if !ok {
-		return
-	}
-
-	return IPCountry(addr)
+	return
 }
