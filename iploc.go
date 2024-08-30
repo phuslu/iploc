@@ -29,7 +29,7 @@ import (
 )
 
 // Version is iplocation database version.
-const Version = "v1.0.20240731"
+const Version = "v1.0.20240830"
 
 //go:embed ipv4.txt
 var ip4txt []byte
