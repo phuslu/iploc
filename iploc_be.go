@@ -1,5 +1,5 @@
-//go:build ppc64 || mips || mips64 || mips64p32
-// +build ppc64 mips mips64 mips64p32
+//go:build ppc64 || s390x || mips || mips64 || mips64p32
+// +build ppc64 s390x mips mips64 mips64p32
 
 package iploc
 
