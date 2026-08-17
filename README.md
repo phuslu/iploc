@@ -1,6 +1,6 @@
 # iploc - fastest ip country library
 
-[![godoc][godoc-img]][godoc] [![release][release-img]][release] [![goreport][goreport-img]][goreport]
+[![godoc][godoc-img]][godoc] [![release][release-img]][release]
 
 ### Getting Started
 
@@ -45,7 +45,5 @@ Following IP2Location Lite Database, usually **monthly**.
 [godoc]: https://godoc.org/github.com/phuslu/iploc
 [release-img]: https://img.shields.io/github/v/tag/phuslu/iploc?label=release
 [release]: https://github.com/phuslu/iploc/releases
-[goreport-img]: https://goreportcard.com/badge/github.com/phuslu/iploc
-[goreport]: https://goreportcard.com/report/github.com/phuslu/iploc
 [coverage-img]: http://gocover.io/_badge/github.com/phuslu/iploc
 [coverage]: https://gocover.io/github.com/phuslu/iploc
